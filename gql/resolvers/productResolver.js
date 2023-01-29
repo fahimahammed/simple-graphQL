@@ -31,8 +31,32 @@ module.exports = {
                 const result = await products.deleteOne({ _id: ObjectId(req.id) });
                 return result.deletedCount > 0;
             }
-            catch(err){
+            catch (err) {
                 return false;
+            }
+        },
+        updateProduct: async (_, req) => {
+            try {
+                const filter = { _id: ObjectId(req.input._id) };
+                const option = { upsert: true };
+                const data = {
+                    $set: {
+                        name: req.input.name,
+                        onSale: req.input.onSale
+                    }
+                }
+                const result = await products.updateOne(filter, data, option);
+                console.log(result)
+                if(result.modifiedCount>0){
+                    return "Data modified...!";
+                }
+                if(result.upsertedCount>0){
+                    return "Data inserted...!";
+                }
+                return "No update";
+            }
+            catch (err) {
+                console.log(err);
             }
         }
     }

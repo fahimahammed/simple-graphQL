@@ -32,9 +32,15 @@ module.exports = `#graphql
     onSale: Boolean! 
     catagoryId: ID!
   }
+  input updatePro{
+    _id: ID!
+    name: String!
+    onSale: Boolean! 
+  }
   extend type Mutation {
     storeProduct(input: product): Product
     deleteProduct(id: ID): Boolean!
+    updateProduct(input: updatePro): String!
   }
 
 `;
