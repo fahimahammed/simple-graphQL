@@ -6,8 +6,8 @@ import http from 'http';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-import typeDefs from './gql/schema.js';
-import resolvers from './gql/resolver.js';
+import typeDefs from './gql/schema/index.js';
+import resolvers from './gql/resolvers/index.js';
 
 
 const app = express();

@@ -1,5 +1,5 @@
-const typeDefs = `#graphql
-  type Query {
+module.exports = `#graphql
+  extend type Query {
     name: String
     age: Int
     products(id: ID!): [Product]
@@ -23,6 +23,20 @@ const typeDefs = `#graphql
     name: String
   }
 
+  input product {
+    name: String!
+    description: String!
+    quantity: Int!
+    image: String!
+    price: Float!
+    onSale: Boolean! 
+    catagoryId: ID!
+  }
+  extend type Mutation {
+    storeProduct(input: product): Product
+    deleteProduct(id: ID): Boolean!
+  }
+
 `;
 
-module.exports=typeDefs;
+
